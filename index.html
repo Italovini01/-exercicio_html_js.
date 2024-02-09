@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Validação de Formulário</title>
+<style>
+    .message {
+        margin-top: 10px;
+        font-weight: bold;
+    }
+    .success-message {
+        color: blueviolet;
+    }
+    .error-message {
+        color: red;
+    }
+    /* Espero que gostem,adicionei algumas cores ao passar o mouse */
+    #campoA:hover,
+    #campoB:hover {
+        background-color: lightgray;
+    }
+</style>
+</head>
+<body>
+
+<form id="meuFormulario">
+    <label for="campoA">Campo A:</label>
+    <input type="number" id="campoA" name="campoA" required>
+    <label for="campoB">Campo B:</label>
+    <input type="number" id="campoB" name="campoB" required>
+    <button type="submit">Enviar Formulário</button>
+</form>
+
+<div id="mensagem" class="message"></div>
+
+<script>
+    document.getElementById('meuFormulario').addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        var campoA = parseInt(document.getElementById('campoA').value);
+        var campoB = parseInt(document.getElementById('campoB').value);
+        var mensagemElement = document.getElementById('mensagem');
+
+        if (campoB > campoA) {
+            mensagemElement.textContent = "Formulário válido!";
+            mensagemElement.classList.remove('error-message');
+            mensagemElement.classList.add('success-message');
+        } else {
+            mensagemElement.textContent = "Número B deve ser maior que número A!";
+            mensagemElement.classList.remove('success-message');
+            mensagemElement.classList.add('error-message');
+        }
+    });
+</script>
+
+</body>
+</html>
